@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiksha Academy - Best Coaching for 9th-12th, JEE & NEET</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #f97316;
+            --light-bg: #f8fafc;
+            --dark-text: #1e293b;
+            --gray-text: #64748b;
+            --white: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        body { color: var(--dark-text); line-height: 1.6; background-color: var(--white); }
+        
+        .notice-bar { background: var(--secondary); color: var(--white); padding: 8px 15px; font-size: 0.9rem; display: flex; align-items: center; overflow: hidden; }
+        .notice-badge { background: var(--primary); padding: 2px 10px; border-radius: 4px; font-weight: 600; margin-right: 15px; white-space: nowrap; }
+        
+        header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
+        .navbar { max-width: 1200px; margin: auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.6rem; font-weight: 700; color: var(--primary); text-decoration: none; }
+        .logo span { color: var(--secondary); }
+        .nav-links { list-style: none; display: flex; gap: 25px; }
+        .nav-links a { text-decoration: none; color: var(--dark-text); font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--secondary); }
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary); }
+
+        .hero { background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: var(--white); padding: 60px 20px; }
+        .hero-container { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; }
+        .hero-text h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 15px; }
+        .hero-text h1 span { color: #fde047; }
+        .hero-text p { font-size: 1.1rem; margin-bottom: 25px; opacity: 0.9; }
+        .hero-badges { display: flex; gap: 15px; flex-wrap: wrap; }
+        .badge-item { background: rgba(255,255,255,0.15); padding: 8px 15px; border-radius: 50px; font-size: 0.9rem; }
+
+        .inquiry-box { background: var(--white); color: var(--dark-text); padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        .inquiry-box h3 { color: var(--primary); margin-bottom: 5px; font-size: 1.4rem; }
+        .inquiry-box p { font-size: 0.85rem; color: var(--gray-text); margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem; }
+        .btn-submit { width: 100%; background: var(--secondary); color: var(--white); border: none; padding: 14px; font-size: 1rem; font-weight: 600; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+        .btn-submit:hover { background: #ea580c; }
+
+        section { padding: 60px 20px; }
+        .section-bg { background: var(--light-bg); }
+        .container { max-width: 1200px; margin: auto; }
+        .section-title { text-align: center; margin-bottom: 40px; }
+        .section-title h2 { font-size: 2rem; color: var(--primary); }
+        .section-title p { color: var(--gray-text); max-width: 600px; margin: 5px auto 0; }
+
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
+        .topper-card { background: var(--white); border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border-top: 4px solid var(--secondary); }
+        .topper-img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; margin-bottom: 12px; border: 3px solid var(--primary); }
+        .topper-score { background: #fef3c7; color: #b45309; font-weight: 700; padding: 4px 12px; border-radius: 20px; display: inline-block; margin: 8px 0; font-size: 0.9rem; }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .course-card { background: var(--white); border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); display: flex; flex-direction: column; justify-content: space-between; }
+        .course-card h3 { color: var(--primary); margin-bottom: 10px; }
+        .course-meta { list-style: none; margin: 15px 0; font-size: 0.9rem; color: var(--gray-text); }
+        .course-meta li { margin-bottom: 8px; }
+        .course-meta i { color: var(--secondary); width: 20px; }
+        .fee-tag { font-weight: 600; color: #16a34a; background: #dcfce7; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; margin-bottom: 15px; display: inline-block; }
+        .btn-outline { display: block; text-align: center; border: 2px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        .btn-outline:hover { background: var(--primary); color: var(--white); }
+
+        .faculty-card { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); text-align: center; padding-bottom: 20px; }
+        .faculty-card img { width: 100%; height: 220px; object-fit: cover; }
+        .faculty-card h4 { margin-top: 15px; color: var(--primary); font-size: 1.2rem; }
+        .faculty-qual { color: var(--secondary); font-weight: 600; font-size: 0.9rem; }
+
+        .corner-box { background: var(--white); padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); }
+        .download-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #e2e8f0; }
+        .download-item:last-child { border-bottom: none; }
+        .btn-sm { background: var(--primary); color: var(--white); padding: 6px 14px; border-radius: 6px; text-decoration: none; font-size: 0.85rem; cursor: pointer; border: none; }
+
+        .review-card { background: var(--white); padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); }
+        .stars { color: #f59e0b; margin-bottom: 10px; }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .gallery-item { position: relative; border-radius: 10px; overflow: hidden; height: 200px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-caption { position: absolute; bottom: 0; background: rgba(0,0,0,0.65); color: var(--white); width: 100%; padding: 8px 12px; font-size: 0.85rem; }
+
+        footer { background: #0f172a; color: #cbd5e1; padding: 50px 20px 20px; }
+        .footer-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 30px; }
+        footer h3 { color: var(--white); margin-bottom: 15px; }
+        footer p, footer li { font-size: 0.9rem; margin-bottom: 10px; }
+        .footer-links { list-style: none; }
+        .footer-links a { color: #cbd5e1; text-decoration: none; }
+        .copyright { text-align: center; border-top: 1px solid #334155; padding-top: 20px; font-size: 0.85rem; }
+
+        .whatsapp-float { position: fixed; bottom: 25px; right: 25px; background: #25d366; color: var(--white); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1000; text-decoration: none; transition: 0.3s; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        @media (max-width: 768px) {
+            .hero-container { grid-template-columns: 1fr; }
+            .hero-text h1 { font-size: 1.9rem; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 65px; left: 0; width: 100%; background: var(--white); padding: 20px; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+        }
+    </style>
+</head>
+<body>
+    <div class="notice-bar">
+        <span class="notice-badge"><i class="fas fa-bullhorn"></i> Notice Board</span>
+        <marquee behavior="scroll" direction="left">
+            📢 Naye Batch (Class 9th to 12th, JEE & NEET) 1 December se shuru ho rahe hain! | 🎓 Scholarship Cum Admission Test ke liye registration khule hain (Up to 90% Fee Waiver).
+        </marquee>
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">Shiksha<span>Academy</span></a>
+            <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#results">Toppers</a></li>
+                <li><a href="#courses">Courses & Fees</a></li>
+                <li><a href="#faculty">Teachers</a></li>
+                <li><a href="#student-corner">Free Notes</a></li>
+                <li><a href="#gallery">Campus</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>Sapno ko Dein Nayi Udaan: <span>Class 9th–12th, JEE & NEET</span> ki Best Coaching</h1>
+                <p>Experienced Teachers, Personal Attention, aur Har Hafte Mock Tests ke saath apni safalta sunishchit karein. Aaj hi Free Demo Class book karein!</p>
+                <div class="hero-badges">
+                    <div class="badge-item"><i class="fas fa-check-circle"></i> 10+ Years Experience</div>
+                    <div class="badge-item"><i class="fas fa-check-circle"></i> Small Batch Size</div>
+                    <div class="badge-item"><i class="fas fa-check-circle"></i> Doubt Solving Sessions</div>
+                </div>
+            </div>
+
+            <div class="inquiry-box" id="demo-form">
+                <h3>Book Free Demo Class</h3>
+                <p>Apni details bharein, hamare counselor aapko call karenge.</p>
+                <form onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <input type="text" id="studentName" placeholder="Student ka Poora Naam *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phoneNumber" placeholder="Mobile / WhatsApp Number *" pattern="[0-9]{10}" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="courseSelect" required>
+                            <option value="">Class / Course Chunein *</option>
+                            <option value="Class 9th & 10th">Class 9th & 10th (Foundation)</option>
+                            <option value="Class 11th & 12th">Class 11th & 12th (Boards)</option>
+                            <option value="IIT-JEE">IIT-JEE (Mains + Advanced)</option>
+                            <option value="NEET-UG">NEET-UG (Medical)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit">Free Demo Book Karein <i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="results">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hamare Shining Toppers (Results)</h2>
+                <p>Hamare students ki mehnat aur teachers ke sahi margdarshan ka nateeja.</p>
+            </div>
+            <div class="grid-4">
+                <div class="topper-card">
+                    <img src="https://unsplash.com" alt="Topper 1" class="topper-img">
+                    <h4>Aarav Sharma</h4>
+                    <div class="topper-score">98.4% (Class 12th)</div>
+                    <p style="font-size: 0.85rem; color: var(--gray-text);">District Topper - Science Stream</p>
+                </div>
+                <div class="topper-card">
+                    <img src="https://unsplash.com" alt="Topper 2" class="topper-img">
+                    <h4>Priya Verma</h4>
+                    <div class="topper-score">AIR 412 (NEET-UG)</div>
+                    <p style="font-size: 0.85rem; color: var(--gray-text);">Score: 685 / 720</p>
+                </div>
+                <div class="topper-card">
+                    <img src="https://unsplash.com" alt="Topper 3" class="topper-img">
+                    <h4>Rohan Gupta</h4>
+                    <div class="topper-score">99.6 Percentile (JEE)</div>
+                    <p style="font-size: 0.85rem; color: var(--gray-text);">100/100 in Mathematics</p>
+                </div>
+                <div class="topper-card">
+                    <img src="https://unsplash.com" alt="Topper 4" class="topper-img">
+                    <h4>Ananya Singh</h4>
+                    <div class="topper-score">97.8% (Class 10th)</div>
+                    <p style="font-size: 0.85rem; color: var(--gray-text);">School Topper (CBSE)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses" class="section-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2>Courses aur Batch Details</h2>
+                <p>Har student ki zaroorat ke hisaab se taiyar kiye gaye courses. Easy EMI aur Scholarship suvidha uplabdh.</p>
+            </div>
+            <div class="grid-3">
+                <div class="course-card">
+                    <div>
+                        <h3>Foundation Batch (9th & 10th)</h3>
+                        <p style="font-size: 0.9rem; color: var(--gray-text);">Maths, Science, aur English ki mazboot neev ke saath Board exam ki poori taiyari.</p>
+                        <ul class="course-meta">
+                            <li><i class="fas fa-clock"></i> <strong>Timing:</strong> Shaam 4:00 - 6:00 PM</li>
+                            <li><i class="fas fa-calendar"></i> <strong>Duration:</strong> 1 Year (Complete Syllabus)</li>
+                            <li><i class="fas fa-book"></i> <strong>Material:</strong> Printed Notes + Weekly Test</li>
+                        </ul>
+                        <span class="fee-tag">Fees: ₹1,500/month se shuru (Installment Available)</span>
+                    </div>
+                    <a href="#demo-form" class="btn-outline">Enquire Now</a>
+                </div>
+
+                <div class="course-card">
+                    <div>
+                        <h3>Target IIT-JEE & NEET (11th/12th)</h3>
+                        <p style="font-size: 0.9rem; color: var(--gray-text);">Board exams ke saath-saath Engineering aur Medical entrance ki targeted taiyari.</p>
+                        <ul class="course-meta">
+                            <li><i class="fas fa-clock"></i> <strong>Timing:</strong> Subah 8:00 - 11:30 AM</li>
+                            <li><i class="fas fa-calendar"></i> <strong>Duration:</strong> 1 Year / 2 Year Program</li>
+                            <li><i class="fas fa-book"></i> <strong>Material:</strong> DPP, Test Series & Doubt Counter</li>
+                        </ul>
+                        <span class="fee-tag">Up to 90% Scholarship via Admission Test</span>
+                    </div>
+                    <a href="#demo-form" class="btn-outline">Enquire Now</a>
+                </div>
+
+                <div class="course-card">
+                    <div>
+                        <h3>Board Booster Crash Course</h3>
+                        <p style="font-size: 0.9rem; color: var(--gray-text);">Exam se pehle poora revision, important questions aur sample paper practice.</p>
+                        <ul class="course-meta">
+                            <li><i class="fas fa-clock"></i> <strong>Timing:</strong> Shaam 6:00 - 8:00 PM</li>
+                            <li><i class="fas fa-calendar"></i> <strong>Duration:</strong> 3 Months Intensive</li>
+                            <li><i class="fas fa-book"></i> <strong>Material:</strong> 10 Years PYQ Booklets</li>
+                        </ul>
+                        <span class="fee-tag">Special Discount for Early Registration</span>
+                    </div>
+                    <a href="#demo-form" class="btn-outline">Enquire Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="faculty">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hamare Anubhavi Teachers (Faculty)</h2>
+                <p>Seekhiye un teachers se jo mushkil concepts ko bhi aasan bana dete hain.</p>
+            </div>
+            <div class="grid-3">
+                <div class="faculty-card">
+                    <img src="https://unsplash.com" alt="Physics Teacher">
+                    <h4>Er. Rajesh Kumar</h4>
+                    <p class="faculty-qual">B.Tech (IIT Kanpur) | Physics Expert</p>
+                    <p style="font-size: 0.85rem; color: var(--gray-text); padding: 5px 15px;">12+ Saal ka Teaching Experience. 500+ students ko JEE/NEET mein select karaya.</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://unsplash.com" alt="Chemistry Teacher">
+                    <h4>Dr. Sunita Mishra</h4>
+                    <p class="faculty-qual">Ph.D. in Chemistry | Senior Faculty</p>
+                    <p style="font-size: 0.85rem; color: var(--gray-text); padding: 5px 15px;">10+ Saal ka Experience. Organic Chemistry ko aasan tricks se padhane ke liye mashhoor.</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://unsplash.com" alt="Maths Teacher">
+                    <h4>Amitabh Tiwari Sir</h4>
+                    <p class="faculty-qual">M.Sc. Mathematics | Gold Medalist</p>
+                    <p style="font-size: 0.85rem; color: var(--gray-text); padding: 5px 15px;">9+ Saal ka Experience. Maths ke dar ko khatam karke 100/100 laane ki strategy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="student-corner" class="section-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2>Student Corner (Free Study Material & Quiz)</h2>
+                <p>Sabhi students ke liye free notes, formula sheets aur daily practice quiz.</p>
+            </div>
+            <div class="grid-3" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+                <div class="corner-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-file-pdf"></i> Free Notes & Papers (PDF)</h3>
+                    <div class="download-item">
+                        <span>Class 10th Science Formula Sheet</span>
+                        <button class="btn-sm" onclick="alert('PDF Download shuru ho gayi hai!')"><i class="fas fa-download"></i> Download</button>
+                    </div>
+                    <div class="download-item">
+                        <span>Class 12th Physics Important Derivations</span>
+                        <button class="btn-sm" onclick="alert('PDF Download shuru ho gayi hai!')"><i class="fas fa-download"></i> Download</button>
+                    </div>
+                    <div class="download-item">
+                        <span>JEE / NEET Previous Year Solved Paper</span>
+                        <button class="btn-sm" onclick="alert('PDF Download shuru ho gayi hai!')"><i class="fas fa-download"></i> Download</button>
+                    </div>
+                </div>
+
+                <div class="corner-box">
+                    <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-brain"></i> Aaj ka Quick Quiz</h3>
+                    <p style="font-weight: 600; margin-bottom: 10px;">Sawaal: Light ki speed vacuum mein kitni hoti hai?</p>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <button class="btn-outline" style="text-align: left; padding: 8px 12px;" onclick="checkAnswer(false)">A) 3 × 10⁵ m/s</button>
+                        <button class="btn-outline" style="text-align: left; padding: 8px 12px;" onclick="checkAnswer(true)">B) 3 × 10⁸ m/s</button>
+                        <button class="btn-outline" style="text-align: left; padding: 8px 12px;" onclick="checkAnswer(false)">C) 3 × 10⁶ km/s</button>
+                    </div>
+                    <p id="quiz-result" style="margin-top: 12px; font-weight: 600;"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>Parents aur Students kya kehte hain?</h2>
+                <p>Hamare parivaar ke sadasyon ke bharosemand vichaar.</p>
+            </div>
+            <div class="grid-3">
+                <div class="review-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Mere bete ke Maths mein 55 marks aate the, Shiksha Academy join karne ke baad usne Board mein 94 score kiya. Teachers har bacche par dhyan dete hain."</p>
+                    <h5 style="margin-top: 12px; color: var(--primary);">- Mr. Manoj Saxena (Parent)</h5>
+                </div>
+                <div class="review-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Yahan ka mahol bahut accha hai. Class ke baad bhi teachers doubts clear karne ke liye available rehte hain. Weekly tests se exam ka dar khatam ho gaya."</p>
+                    <h5 style="margin-top: 12px; color: var(--primary);">- Sneha Patel (Class 12th Student)</h5>
+                </div>
+                <div class="review-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Parents ko har test ke marks aur attendance ka message phone par mil jata hai. Yeh transparency mujhe sabse zyada pasand aayi."</p>
+                    <h5 style="margin-top: 12px; color: var(--primary);">- Mrs. Kavita Joshi (Parent)</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="section-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hamara Campus aur Suvidhayein</h2>
+                <p>Padhai ke liye shant, surakshit aur modern classrooms.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://unsplash.com" alt="Classroom">
+                    <div class="gallery-caption">Air-Conditioned Smart Classrooms</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://unsplash.com" alt="Library">
+                    <div class="gallery-caption">Self-Study Library & Reading Room</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://unsplash.com" alt="Doubt Session">
+                    <div class="gallery-caption">1-on-1 Doubt Solving Counter</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://unsplash.com" alt="Prize Distribution">
+                    <div class="gallery-caption">Annual Toppers Prize Ceremony</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-grid">
+            <div>
+                <h3>Shiksha Academy</h3>
+                <p>Hamara lakshya har student ko sahi guidance aur quality education dekar unke sapno ko poora karna hai.</p>
+                <p><i class="fas fa-map-marker-alt"></i> 2nd Floor, Vidya Bhawan, Main Market Road, Near City Bus Stand</p>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope"></i> admissions@shikshaacademy.in</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#results">Hamare Toppers</a></li>
+                    <li><a href="#courses">Courses & Fee Structure</a></li>
+                    <li><a href="#faculty">Teachers ki Jankari</a></li>
+                    <li><a href="#student-corner">Free Study Material</a></li>
+                    <li><a href="#demo-form">Book Free Demo Class</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Location Map</h3>
+                <iframe 
+                    src="https://google.com" 
+                    width="100%" height="180" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 Shiksha Academy. All Rights Reserved.
+        </div>
+    </footer>
+
+    <a href="https://wa.me." class="whatsapp-float" target="_blank" title="WhatsApp par baat karein">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+                    <li><a href="#courses">Courses & Fee Structure</a></li>
+                    <li><a href="#faculty">Teachers ki Jankari</a></li>
+                    <li><a href="#student-corner">Free Study Material</a></li>
+                    <li><a href="#demo-form">Book Free Demo Class</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Location Map</h3>
+                <iframe 
+                    src="https://google.com" 
+                    width="100%" height="180" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 Shiksha Academy. All Rights Reserved.
+        </div>
+    </footer>
+
+    <a href="https://wa.me." class="whatsapp-float" target="_blank" title="WhatsApp par baat karein">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('studentName').value;
+            const course = document.getElementById('courseSelect').value;
+            alert(`Dhanyawaad ${name}! Aapki ${course} ki Free Demo Class ke liye request mil gayi hai. Hamari team jald hi aapko call karegi.`);
+            event.target.reset();
+        }
+
+        function checkAnswer(isCorrect) {
+            const resultEl = document.getElementById('quiz-result');
+            if (isCorrect) {
+                resultEl.style.color = '#16a34a';
+                resultEl.innerHTML = '✅ Sahi Jawaab! Light ki speed 3 × 10⁸ m/s hoti hai.';
+            } else {
+                resultEl.style.color = '#dc2626';
+                resultEl.innerHTML = '❌ Galat Jawaab. Sahi jawaab Option B (3 × 10⁸ m/s) hai.';
+            }
+        }
+    </script>
+</body>
+</html>
